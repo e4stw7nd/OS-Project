@@ -9,9 +9,11 @@ import Navbar from './components/navbar';
 
 function App() {
   const [messages,setmessages]=useState([]);
+  const [inputloading,setinputloading]=useState(false);
+  const [outputloading,setoutputloading]=useState(false);
   return (
     <React.Fragment>
-      <ChatContext.Provider value={{messages,setmessages}}>
+      <ChatContext.Provider value={{messages,setmessages,inputloading,setinputloading,outputloading,setoutputloading}}>
     <div className="App">
       <Navbar/>
       <MainPage/>

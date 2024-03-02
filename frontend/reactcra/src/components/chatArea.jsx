@@ -19,6 +19,7 @@ export default function ChatArea({onStop}) {
         display: "flex",
         flexDirection: "column",
         bgcolor: "grey.200",
+        paddingBottom:0
       }}
     >
         <div id="messages" className='h-[75%] overflow-auto p-2'>
@@ -28,8 +29,8 @@ export default function ChatArea({onStop}) {
         ))}
       {/* </Box> */}
         </div>
-      <Box sx={{ p: 2, backgroundColor: "background.default" }} >
-        <Grid container spacing={2}>
+      <Box sx={{ p: 1, backgroundColor: "background.default" }} >
+        {/* <Grid container spacing={2}> */}
           {/* <Grid item xs={10}>
             <TextField
               fullWidth
@@ -53,7 +54,7 @@ export default function ChatArea({onStop}) {
             </Button> */}
             <RecordingArea onStop={onStop}/>
           {/* </Grid> */}
-        </Grid>
+        {/* </Grid> */}
       </Box>
     </Box>
   );
