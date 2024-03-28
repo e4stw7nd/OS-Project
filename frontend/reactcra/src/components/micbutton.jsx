@@ -10,7 +10,7 @@ export default function MicButton({recording,clickHandler,disabled}) {
 
   return (
     <div>
-      <button className={`bg-${disabled?discol:(recording?running:stopped)} flex justify-around rounded-full m-1 h-14 w-14 md:h-16 md:w-16 md:pt-7 border-[1px] border-black`} onClick={clickHandler} disabled={disabled}>
+      <button className={`bg-${disabled?discol:(recording?running:stopped)} flex justify-around rounded-full m-1 h-14 w-14 md:h-16 md:w-16 md:pt-7 border-[1px] pt-7 border-black`} onClick={clickHandler} disabled={disabled}>
       <i className="fa-solid fa-microphone fa-2xl"></i>
       </button>
     </div>

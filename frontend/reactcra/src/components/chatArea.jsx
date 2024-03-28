@@ -18,7 +18,7 @@ export default function ChatArea({onStop}) {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        bgcolor: "grey.200",
+        bgcolor: "transparent",
         paddingBottom:0
       }}
     >
@@ -29,7 +29,7 @@ export default function ChatArea({onStop}) {
         ))}
       {/* </Box> */}
         </div>
-      <Box sx={{ p: 1, backgroundColor: "background.default" }} >
+      <Box sx={{ p: 1, backgroundColor: "transparent" }} >
         {/* <Grid container spacing={2}> */}
           {/* <Grid item xs={10}>
             <TextField

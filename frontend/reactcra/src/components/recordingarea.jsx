@@ -4,6 +4,7 @@ import { ReactMic } from 'react-mic';
 import chatContext from '../context/chatcontext';
 import { CircularProgress } from '@mui/material';
 import { getExecute, getText } from '../apis';
+import Typewriter from './typewriter';
 
 export default function RecordingArea() {
     const {messages,setmessages,inputloading,outputloading}=useContext(chatContext);
@@ -31,23 +32,23 @@ export default function RecordingArea() {
         console.log("FILE",filenow);
         let textres=await getText(filenow)
         newmsg=newmsg.slice(0,newmsg.length-1);
-        newmsg=newmsg.concat([{time:new Date(),text:<div><audio src={`${blob.blobURL}`} controls></audio><br />{textres}</div>,sender:'user'}])
+        newmsg=newmsg.concat([{time:new Date(),text:<div><audio src={`${blob.blobURL}`} controls></audio><br /><Typewriter text={textres} delay={100}/></div>,sender:'user'}])
         newmsg=newmsg.concat([{time:new Date(),text:<CircularProgress color="success" />,sender:'bot'}])
         setmessages(newmsg);
         
         let execres=await getExecute(textres)
         newmsg=newmsg.slice(0,newmsg.length-1);
-        newmsg=newmsg.concat([{time:new Date(),text:execres.status,sender:'bot'}])
+        newmsg=newmsg.concat([{time:new Date(),text:<Typewriter text={execres.status} delay={50}/>,sender:'bot'}])
         setmessages(newmsg)
         
     }
   return (
-    <div className='flex p-1 m-1 border-[2px] border-blue-700 md:w-[100%] h-20 rounded-md w-full bg-gradient-to-r from-green-600 to-blue-600'>
+    <div className='flex p-1 m-1 border-[2px] border-blue-800 shadow-lg shadow-white md:w-[100%] h-20 rounded-md w-full bg-transparent'>
         <div className='md:w-[90%] w-[85%] rounded-xl border-[2px] border-blue-700 p-0 md:h-16 bg-white '>
         <ReactMic
         record={rec}
         onStop={onstop}
-        className='md:h-14 md:w-[90%] h-10 w-[90%] rounded-2xl mx-2'
+        className='md:h-14 md:w-[95%] h-10 w-[90%] rounded-2xl mx-2'
         />
         </div>
         <div className='md:pl-[5vw]'>
