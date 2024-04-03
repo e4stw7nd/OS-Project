@@ -15,13 +15,13 @@ export const getText=async(voicefile)=>{
     return res.data.text
 }
 
-export const getExecute=async(command)=>{
+export const getExecute=async(file)=>{
     // axios
     const res = await axios.post(`${host}/execute`, {
-            action:command,
+            voice:file,
         }, {
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
             }
         }
     )

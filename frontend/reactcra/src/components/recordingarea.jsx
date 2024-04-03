@@ -27,16 +27,16 @@ export default function RecordingArea() {
         console.log("HERE",messages)
         newmsg=newmsg.concat([{time:new Date(),text:<CircularProgress color="success" />,sender:'user'}])
         setmessages(newmsg);
-
-        let filenow =new File([blob.blob],"newvoice.webm");
+        let datenow=Date();
+        let filenow =new File([blob.blob],`newvoice${datenow.toString().slice(0,25).split(":").join("")}.webm`);
         console.log("FILE",filenow);
         let textres=await getText(filenow)
         newmsg=newmsg.slice(0,newmsg.length-1);
-        newmsg=newmsg.concat([{time:new Date(),text:<div><audio src={`${blob.blobURL}`} controls></audio><br /><Typewriter text={textres} delay={100}/></div>,sender:'user'}])
+        newmsg=newmsg.concat([{time:new Date(),text:<div><audio className='w-[100%] rounded-lg bg-blue-800' src={`${blob.blobURL}`} controls></audio><br /><Typewriter text={textres} delay={100}/></div>,sender:'user'}])
         newmsg=newmsg.concat([{time:new Date(),text:<CircularProgress color="success" />,sender:'bot'}])
         setmessages(newmsg);
         
-        let execres=await getExecute(textres)
+        let execres=await getExecute(filenow)
         newmsg=newmsg.slice(0,newmsg.length-1);
         newmsg=newmsg.concat([{time:new Date(),text:<Typewriter text={execres.status} delay={50}/>,sender:'bot'}])
         setmessages(newmsg)
