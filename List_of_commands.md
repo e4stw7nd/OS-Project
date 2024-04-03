@@ -14,3 +14,5 @@ Directory Command
 2. remove directory <directory_name>
 3. rename directory <old_name> <new_name>
 4. change directory <path_to_directory>
+5. copy directory <original_name> <new_name>
+6. list files
