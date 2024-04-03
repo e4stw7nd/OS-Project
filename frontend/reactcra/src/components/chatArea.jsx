@@ -23,38 +23,14 @@ export default function ChatArea({onStop}) {
       }}
     >
         <div id="messages" className='h-[75%] overflow-auto p-2'>
-      {/* <Box sx={{ flexGrow: 1, overflow: "auto", p: 2, }}> */}
         {messages.map((message) => (
           <Message  message={message} />
         ))}
-      {/* </Box> */}
         </div>
       <Box sx={{ p: 1, backgroundColor: "transparent" }} >
-        {/* <Grid container spacing={2}> */}
-          {/* <Grid item xs={10}>
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="Type a message"
-              variant="outlined"
-              value={input}
-              onChange={handleInputChange}
-            />
-          </Grid> */}
-          {/* <Grid item xs={2} sx={{display:"flex", justifyContent:"left"}}> */}
-            {/* <Button
-              fullWidth
-              size="large"
-              color="primary"
-              variant="contained"
-              endIcon={<SendIcon />}
-              onClick={handleSend}
-            >
-              Send
-            </Button> */}
+        
             <RecordingArea onStop={onStop}/>
-          {/* </Grid> */}
-        {/* </Grid> */}
+
       </Box>
     </Box>
   );
