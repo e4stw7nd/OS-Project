@@ -56,6 +56,8 @@ def action(req):
         # os.remove("backend/"+file.name)
     # return JsonResponse({"text":res})
         print("RESPONSE",res)
+        if not res:
+           res="No Commands Recieved"
     return JsonResponse({"status":res})
 
 def home(req):

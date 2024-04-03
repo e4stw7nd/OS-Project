@@ -31,7 +31,13 @@ export default function RecordingArea() {
         let filenow =new File([blob.blob],`newvoice${datenow.toString().slice(0,25).split(":").join("")}.webm`);
         console.log("FILE",filenow);
         let textres=await getText(filenow)
+        console.log("textres",textres)
         newmsg=newmsg.slice(0,newmsg.length-1);
+        if(textres.error){
+            newmsg=newmsg.concat([{time:new Date(),text:<div><audio className='w-[100%] rounded-lg bg-blue-800' src={`${blob.blobURL}`} controls></audio><br />{textres.error}</div>,sender:'user'}])
+            setmessages(newmsg);
+            return;
+        }
         newmsg=newmsg.concat([{time:new Date(),text:<div><audio className='w-[100%] rounded-lg bg-blue-800' src={`${blob.blobURL}`} controls></audio><br /><Typewriter text={textres} delay={100}/></div>,sender:'user'}])
         newmsg=newmsg.concat([{time:new Date(),text:<CircularProgress color="success" />,sender:'bot'}])
         setmessages(newmsg);
