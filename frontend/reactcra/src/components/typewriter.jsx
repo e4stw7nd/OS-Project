@@ -10,6 +10,8 @@ const Typewriter = ({ text, delay }) => {
     const timeout = setTimeout(() => {
       setCurrentText(prevText => prevText + text[currentIndex]);
       setCurrentIndex(prevIndex => prevIndex + 1);
+      var objDiv = document.getElementById("messages");
+      objDiv.scrollTop = objDiv.scrollHeight+100;
     }, delay);
 
     return () => clearTimeout(timeout);

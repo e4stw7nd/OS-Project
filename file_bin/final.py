@@ -47,17 +47,19 @@ def executor(cmd):
     elif(cmd[0]=="list"):
         code="./list "+os.environ["pwd"]
     else:
-        return(-1)
+        return('-1')
     try:
         if(code!=""):
             # print(code)
-            os.system(code)
+            os.system(code+" >tmp.txt")
+            code=""
+            return(open("tmp.txt","r").read())
         code=""
-        return(0)
+       
     except:
         # print(code)
         code=""
-        return(-1)
+        return('-1')
     
 init()
 print(executor("change directory challs"))
