@@ -22,7 +22,17 @@ def replacer(cmd):
             t=t+i
     cmd=t
     return(cmd)
-
+def returner(path):
+    if(path.count("/")==1):
+        return("/")
+    else:
+        path=path.split("/")
+        
+        tt=""
+        for i in range(1,len(path)-1):
+            tt=tt+"/"+path[i]
+            print(tt)
+        return(tt)
 def executor(cmd):
     t=""
     cmd=replacer(cmd)
@@ -50,10 +60,10 @@ def executor(cmd):
     elif(cmd[0]=="rename" ):
         t="Renamed"
         code="/home/kali/os/OS-Project/file_bin/move "+cmd[2]+" "+cmd[3]
-    elif(cmd[0]=="remove" and cmd[1]=="file"):
+    elif((cmd[0]=="remove" or cmd[0]=="removed") and cmd[1]=="file"):
         t="Removed"
         code="/home/kali/os/OS-Project/file_bin/remove "+cmd[2]
-    elif(cmd[0]=="remove" and cmd[1]=="directory"):
+    elif((cmd[0]=="remove" or cmd[0]=="removed") and cmd[1]=="directory"):
         t="Removed"
         code="/home/kali/os/OS-Project/file_bin/remove -rf "+cmd[2]
     elif(cmd[0]=="change"):
@@ -61,7 +71,7 @@ def executor(cmd):
         os.environ["pwd"]=cmd[2]
 
     elif(cmd[0]=="go"):
-        os.environ["pwd"]=os.environ["pwd"]+"/.."
+        os.environ["pwd"]=returner(os.environ["pwd"])
         print("backked")
     elif(cmd[0]=="list"):
         code="/home/kali/os/OS-Project/file_bin/list "+os.environ["pwd"]
@@ -108,9 +118,10 @@ def transcribe(audio_file):
   with open(transcript, "r") as file:
     data = json.load(file)
     result = data['results']['channels'][0]['alternatives'][0]['transcript']
-    
-    return(executor(result))
-
+    try:
+        return(executor(result))
+    except:
+        return("Error")
 @csrf_exempt
 def converToText(req):
     if (req.method=='POST'):
